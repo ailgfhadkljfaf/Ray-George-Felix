@@ -530,6 +530,17 @@
 		this.power = 0;
 		this.waiting = 0.5;
 		this.dying = 2;
+
+		// If a ground-drop timer is active (level 1-1), clear it so the timer
+		// resets when the player dies and the level restarts.
+		if (window.groundDropTimer) {
+			clearTimeout(window.groundDropTimer);
+			window.groundDropTimer = null;
+		}
+		if (window.groundFlyTimer) {
+			clearTimeout(window.groundFlyTimer);
+			window.groundFlyTimer = null;
+		}
 		
 		// Clear all fireballs on death
 		fireballs.length = 0;

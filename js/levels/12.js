@@ -3,7 +3,7 @@ var onetwo = Mario.onetwo = function() {
   level = new Mario.Level({
     playerPos: [56,192],
     loader: Mario.onetwo,
-    background: "#00aaff",
+    background: "#ff0000",
     scrolling: true,
     invincibility: [144, 192, 240],
     exit: 204,
