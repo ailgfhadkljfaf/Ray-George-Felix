@@ -183,3 +183,5 @@
 
   Fireball.prototype.bump = function() {;}
 })();
+
+Mario.Fireball.prototype.deleteAfterSeconds = 5;

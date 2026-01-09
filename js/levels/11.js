@@ -4,7 +4,7 @@ var oneone = Mario.oneone = function() {
   //TODO: put as much of this in the Level object definition as possible.
   level = new Mario.Level({
     playerPos: [56,192],
-    loader: Mario.onetwo,
+    loader: Mario.oneone,
     background: "#00aaff",
     scrolling: true,
     invincibility: [144, 192, 240],
@@ -76,6 +76,37 @@ var oneone = Mario.oneone = function() {
   ground.forEach(function(loc) {
     level.putFloor(loc[0],loc[1]);
   });
+
+  // Make the level harder: remove the ground tiles after 10 seconds so
+  // the player will fall. We remove the two rows used for the floor (13,14).
+  // Use a global timer handle so it can be cleared/reset when the player dies.
+  if (window.groundDropTimer) {
+    clearTimeout(window.groundDropTimer);
+    window.groundDropTimer = null;
+  }
+  window.groundDropTimer = setTimeout(function() {
+    // iterate across a generous range of columns and delete any floor tiles
+    for (var i = 0; i < 300; i++) {
+      if (level.statics[13]) delete level.statics[13][i];
+      if (level.statics[14]) delete level.statics[14][i];
+    }
+    window.groundDropTimer = null;
+  }, 10000);
+
+  // At 9.999 seconds, give all Goombas the ability to fly
+  if (window.groundFlyTimer) {
+    clearTimeout(window.groundFlyTimer);
+    window.groundFlyTimer = null;
+  }
+  window.groundFlyTimer = setTimeout(function() {
+    if (!level || !level.enemies) return;
+    level.enemies.forEach(function(e) {
+      if (e && typeof e.enableFly === 'function') {
+        try { e.enableFly(); } catch (ex) { /* ignore */ }
+      }
+    });
+    window.groundFlyTimer = null;
+  }, 9999);
 
   //build scenery
   clouds = [[7,3],[19, 2],[56, 3],[67, 2],[87, 2],[103, 2],[152, 3],[163, 2],[200, 3]];
@@ -233,3 +264,4 @@ var oneone = Mario.oneone = function() {
   // music.overworld.currentTime = 0;
   music.overworld.play();
 };
+

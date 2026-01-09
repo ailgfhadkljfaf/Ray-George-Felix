@@ -12,6 +12,7 @@
       hitbox: [0,0,16,16]
     });
     this.vel[0] = -0.5;
+    this.flying = false;
     this.idx = level.enemies.length;
   };
 
@@ -32,8 +33,15 @@
         delete level.enemies[this.idx];
       }
     }
-    this.acc[1] = 0.2;
-    this.vel[1] += this.acc[1];
+    // If flying, apply lift; otherwise use normal gravity
+    if (this.flying) {
+      // give a slight upward thrust so goombas can hover/fly
+      this.acc[1] = 0;
+      if (this.vel[1] > -1.5) this.vel[1] -= 0.12;
+    } else {
+      this.acc[1] = 0.2;
+      this.vel[1] += this.acc[1];
+    }
     this.pos[0] += this.vel[0];
     this.pos[1] += this.vel[1];
     
@@ -131,6 +139,12 @@
     fb.vel[1] = -1;
     fb.acc[1] = 0.2;
     fireballs.push(fb);
+  };
+
+  Goomba.prototype.enableFly = function() {
+    this.flying = true;
+    // give an initial upward kick
+    if (this.vel[1] > -1.5) this.vel[1] = -1.2;
   };
 
   Goomba.prototype.bump = function() {
