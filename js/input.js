@@ -8,16 +8,27 @@
         switch(code) {
         case 32:
             key = 'SPACE'; break;
+        // WASD
+        case 65:
+            key = 'LEFT'; break;
+        case 87:
+            key = 'JUMP'; break;
+        case 68:
+            key = 'RIGHT'; break;
+        case 83:
+            key = 'DOWN'; break;
+        // Arrow keys (mirror WASD)
         case 37:
             key = 'LEFT'; break;
         case 38:
-            key = 'UP'; break;
+            key = 'JUMP'; break;
         case 39:
             key = 'RIGHT'; break;
         case 40:
             key = 'DOWN'; break;
+        // Run / other actions
         case 88:
-            key = 'JUMP'; break;
+            key = 'RUN'; break;
         case 90:
             key = 'RUN'; break;
         case 70:
@@ -29,6 +40,11 @@
         }
 
         pressedKeys[key] = status;
+
+            // Automatically run when moving left or right
+            if (key === 'LEFT' || key === 'RIGHT') {
+                pressedKeys['RUN'] = status;
+            }
     }
 
     document.addEventListener('keydown', function(e) {
