@@ -30,3 +30,12 @@ html {
   top: 0;
   left: 0;
 }
+
+.controls {
+    font-weight: bold;
+    letter-spacing: 1px;
+    animation: glow 2s ease-in-out infinite;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    text-align: left;
+    font-size: 17px;
+}
