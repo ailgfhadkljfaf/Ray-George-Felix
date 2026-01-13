@@ -24,6 +24,7 @@ var player = new Mario.Player([0,0]);
 canvas.width = 762;
 canvas.height = 720;
 ctx.scale(3,3);
+canvas.style.display = 'none';
 document.body.appendChild(canvas);
 
 //viewport
@@ -42,14 +43,21 @@ resources.load([
   'sprites/enemyr.png',
 ]);
 
-resources.onReady(init);
+resources.onReady(function() {
+  // Menu is already shown, wait for user to login
+});
+
+function startGame() {
+  initializeGame();
+}
 var level;
 var sounds;
 var music;
 
 //initialize
 var lastTime;
-function init() {
+function initializeGame() {
+  canvas.style.display = 'block';
   music = {
     overworld: new Audio('sounds/aboveground_bgm.ogg'),
     underground: new Audio('sounds/underground_bgm.ogg'),
@@ -312,3 +320,5 @@ function render() {
 function renderEntity(entity) {
   entity.render(ctx, vX, vY);
 }
+
+window.startGame = startGame;

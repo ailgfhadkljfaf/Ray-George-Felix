@@ -10,8 +10,74 @@
     <meta name="viewport" content="width=device-width">
 
     <link rel="stylesheet" href="css/game.css">
+    <style>
+      #menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      #menu.hidden {
+        display: none;
+      }
+      .menu-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .form-group {
+        margin: 10px 0;
+      }
+      input {
+        padding: 5px;
+        margin: 5px;
+      }
+      button {
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
+    <div id="menu">
+      <div class="menu-content">
+        <h2>Welcome to Super Mario Bros</h2>
+        <div id="login-form">
+          <h3>Login</h3>
+          <div class="form-group">
+            <input type="text" id="login-username" placeholder="Username">
+          </div>
+          <div class="form-group">
+            <input type="password" id="login-password" placeholder="Password">
+          </div>
+          <button onclick="login()">Login</button>
+          <button onclick="showSignup()">Sign Up</button>
+        </div>
+        <div id="signup-form" style="display: none;">
+          <h3>Sign Up</h3>
+          <div class="form-group">
+            <input type="text" id="signup-username" placeholder="Username">
+          </div>
+          <div class="form-group">
+            <input type="password" id="signup-password" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <input type="password" id="signup-confirm" placeholder="Confirm Password">
+          </div>
+          <button onclick="signup()">Sign Up</button>
+          <button onclick="showLogin()">Back to Login</button>
+        </div>
+        <div id="message"></div>
+      </div>
+    </div>
     <script type="text/javascript" src="js/util.js"></script>
     <script type="text/javascript" src="js/input.js"></script>
     <script type="text/javascript" src="js/resources.js"></script>
@@ -38,10 +104,61 @@
     <script type="text/javascript" src="js/levels/12.js"></script>
     <script type="text/javascript" src="js/levels/12tunnel.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
+    <script>
+      let currentUser = null;
+
+      function showMessage(msg) {
+        document.getElementById('message').textContent = msg;
+      }
+
+      function showSignup() {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('signup-form').style.display = 'block';
+        showMessage('');
+      }
+
+      function showLogin() {
+        document.getElementById('signup-form').style.display = 'none';
+        document.getElementById('login-form').style.display = 'block';
+        showMessage('');
+      }
+
+      function login() {
+        const username = document.getElementById('login-username').value;
+        const password = document.getElementById('login-password').value;
+        const users = JSON.parse(localStorage.getItem('marioUsers') || '{}');
+        if (users[username] && users[username] === password) {
+          currentUser = username;
+          document.getElementById('menu').classList.add('hidden');
+          window.startGame();
+        } else {
+          showMessage('Invalid username or password');
+        }
+      }
+
+      function signup() {
+        const username = document.getElementById('signup-username').value;
+        const password = document.getElementById('signup-password').value;
+        const confirm = document.getElementById('signup-confirm').value;
+        if (password !== confirm) {
+          showMessage('Passwords do not match');
+          return;
+        }
+        const users = JSON.parse(localStorage.getItem('marioUsers') || '{}');
+        if (users[username]) {
+          showMessage('Username already exists');
+          return;
+        }
+        users[username] = password;
+        localStorage.setItem('marioUsers', JSON.stringify(users));
+        showMessage('Account created! Please login.');
+        showLogin();
+      }
+    </script>
     <div class="info">
       <p class="controls"><h2>Controls</h2></p>
       <h1>THE BEST MARIO</h1>
-      <p class="controls">Move: WASD,arrowkeys</p>
+      <p class="controls">Move: WASD, arrowkeys</p>
       <p class="controls">Fireball: F, Invincibility: I, Double jump: Hold w, up</p>
       <div class="links">My Links <br><a href="http://garrettjohnson.net">Portfolio</a> <a href="http://linkedin.com/in/garretttjohnson">LinkedIn</a> <a href="https://github.com/reruns">github</a><div>
     </div>
