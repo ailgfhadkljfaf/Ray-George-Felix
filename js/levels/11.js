@@ -5,7 +5,7 @@ var oneone = Mario.oneone = function() {
   level = new Mario.Level({
     playerPos: [56,192],
     loader: Mario.oneone,
-    background: "#87CEEB",
+    background: "#000028",
     scrolling: true,
     invincibility: [144, 192, 240],
     exit: 204,
