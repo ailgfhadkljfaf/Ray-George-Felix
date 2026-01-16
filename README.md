@@ -1,9 +1,9 @@
 # Super Mario Adventure! 🚀
 
-Hey there, gamer! Ready to jump into the iconic world of Mario? This is your chance to relive the fun with our awesome Super Mario clone!
+Hey there, gamer! Ready to jump into the iconic world of Felix Game? This is your chance to relive the fun with our awesome Super Mario clone!
 
 ## What's This Game About? 🎮
-It's a side-scrolling adventure where you play as Mario (or Luigi?), running through levels, jumping over obstacles, collecting coins, and battling enemies like Goombas and Koopas. Power up with mushrooms, fire flowers, and stars to become invincible!
+It's a side-scrolling adventure where you play as Felix (or Big Felix?), running through levels, jumping over obstacles, collecting coins, and battling enemies like Goombas and Koopas. Power up with mushrooms, fire flowers, and stars to become invincible!
 
 ## Cool Features ✨
 - **Classic Gameplay**: Jump, run, and shoot enemies 
