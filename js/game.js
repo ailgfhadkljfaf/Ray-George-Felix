@@ -79,13 +79,16 @@ var gameTime = 0;
 
 //set up the game loop
 function main() {
-  var now = Date.now();
-  var dt = (now - lastTime) / 1000.0;
+  // Only run game if menu is not active
+  if (!gameMenuActive && gameStarted) {
+    var now = Date.now();
+    var dt = (now - lastTime) / 1000.0;
 
-  update(dt);
-  render();
+    update(dt);
+    render();
 
-  lastTime = now;
+    lastTime = now;
+  }
   requestAnimFrame(main);
 }
 

@@ -388,9 +388,10 @@
 			}
 			this.dying -= 1 * dt;
 			if (this.dying <= 0) {
-				player = new Mario.Player(level.playerPos);
-				level.loader.call();
-				input.reset();
+				// Show death screen instead of immediately reloading
+				if (typeof showDeathScreen === 'function') {
+					showDeathScreen();
+				}
 			}
 		}
 		else {

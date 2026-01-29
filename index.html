@@ -12,6 +12,68 @@
     <link rel="stylesheet" href="css/game.css">
   </head>
   <body>
+    <div id="menu" class="menu">
+      <div class="menu-container">
+        <h1 class="menu-title">The Felix Game </h1>
+        <div class="menu-options">
+          <button class="menu-btn" id="startBtn">START GAME</button>
+          <button class="menu-btn" id="instructionsBtn">INSTRUCTIONS</button>
+          <button class="menu-btn" id="creditsBtn">CREDITS</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="instructions-screen" class="instructions-screen hidden">
+      <div class="instructions-container">
+        <h1 class="instructions-title">HOW TO PLAY</h1>
+        <div class="instructions-content">
+          <p><strong>OBJECTIVE:</strong> Reach the flag at the end of each level!</p>
+          <br>
+          <p><strong>CONTROLS:</strong></p>
+          <p>Move Left/Right: WASD or Arrow Keys</p>
+          <p>Jump: W or Up Arrow</p>
+          <p>Double Jump: Hold W or Up Arrow</p>
+          <p>Fireball: F</p>
+          <p>Levitation: Space Bar</p>
+          <br>
+          <p><strong>TIPS:</strong></p>
+          <p>Use your abilities to shoot enemies</p>
+          <p>Use power-ups to gain special abilities</p>
+          <p>Do not jump on enemies to defeat them</p>
+          <p>Avoid falling into pits!</p>
+        </div>
+        <button class="menu-btn back-btn" id="backBtn">BACK</button>
+      </div>
+    </div>
+
+    <div id="credits-screen" class="credits-screen hidden">
+      <div class="credits-container">
+        <h1 class="credits-title">CREDITS</h1>
+        <div class="credits-content">
+          <p><strong>GAME DEVELOPED BY:</strong></p>
+          <p>Ray, George, and Felix</p>
+          <br>
+          <p><strong>ORIGINAL GAME:</strong></p>
+          <p>Super Mario Bros by Nintendo</p>
+          <br>
+        </div>
+        <button class="menu-btn back-btn" id="creditsBackBtn">BACK</button>
+      </div>
+    </div>
+
+    <div id="death-screen" class="death-screen hidden">
+      <div class="death-container">
+        <h1 class="death-title">GAME OVER</h1>
+        <div class="death-message">
+          <p>You Died!</p>
+        </div>
+        <div class="death-options">
+          <button class="menu-btn" id="tryAgainBtn">TRY AGAIN</button>
+          <button class="menu-btn" id="rageQuitBtn"> QUIT Game</button>
+        </div>
+      </div>
+    </div>
+
     <script type="text/javascript" src="js/util.js"></script>
     <script type="text/javascript" src="js/input.js"></script>
     <script type="text/javascript" src="js/resources.js"></script>
@@ -37,12 +99,7 @@
     <script type="text/javascript" src="js/levels/11tunnel.js"></script>
     <script type="text/javascript" src="js/levels/12.js"></script>
     <script type="text/javascript" src="js/levels/12tunnel.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
-    <div class="info">
-      <h1>The Felix Game</h1>
-      <p class="controls"><h2>Controls</h2></p>
-      <p class="controls">Move: WASD, arrowkeys</p>
-      <p class="controls">Fireball: F<br>Levitation: Space bar<br>Double jump: Hold w, up arrow </p>
-    </div>
   </body>
 </html>
